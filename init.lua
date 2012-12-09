@@ -5,7 +5,7 @@
 
 local function is_water(pos)
 	local nn = minetest.env:get_node(pos).name
-	return nn == "default:water_source" or nn == "default:water_flowing"
+	return minetest.get_item_group(nn, "water") ~= 0
 end
 
 local function get_sign(i)
