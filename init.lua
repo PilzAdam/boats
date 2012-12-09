@@ -83,10 +83,10 @@ function boat:on_step(dtime)
 			self.v = self.v-0.08
 		end
 		if ctrl.left then
-			self.object:setyaw(self.object:getyaw()+math.pi/180)
+			self.object:setyaw(self.object:getyaw()+math.pi/120)
 		end
 		if ctrl.right then
-			self.object:setyaw(self.object:getyaw()-math.pi/180)
+			self.object:setyaw(self.object:getyaw()-math.pi/120)
 		end
 	end
 	local s = get_sign(self.v)
