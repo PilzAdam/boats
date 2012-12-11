@@ -33,9 +33,9 @@ end
 local boat = {
 	physical = true,
 	collisionbox = {-0.5,-0.4,-0.5, 0.5,0.4,0.5},
-	visual = "cube",
-	visual_size = {x=1.2, y=0.8},
-	textures = {"boat_top.png", "boat_bottom.png", "boat_side.png", "boat_side.png", "boat_side.png", "boat_side.png"},
+	visual = "mesh",
+	mesh = "boat.x",
+	textures = {"boat.png"},
 	
 	driver = nil,
 	v = 0,
