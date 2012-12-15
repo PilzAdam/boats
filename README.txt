@@ -9,3 +9,8 @@ WTFPL
 License of media (textures and sounds):
 ---------------------------------------
 WTFPL
+
+Authors of media files:
+-----------------------
+textures: PilzAdam
+model: thetoon and Zeg9
