@@ -12,5 +12,5 @@ WTFPL
 
 Authors of media files:
 -----------------------
-textures: PilzAdam
+textures: Zeg9
 model: thetoon and Zeg9
