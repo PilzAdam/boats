@@ -112,14 +112,25 @@ function boat:on_step(dtime)
 	else
 		p.y = p.y+1
 		if is_water(p) then
-			self.object:setacceleration({x=0, y=10, z=0})
-			self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
+			self.object:setacceleration({x=0, y=3, z=0})
+			local y = self.object:getvelocity().y
+			if y > 2 then
+				y = 2
+			end
+			if y < 0 then
+				self.object:setacceleration({x=0, y=10, z=0})
+			end
+			self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), y))
 		else
 			self.object:setacceleration({x=0, y=0, z=0})
-			self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
-			local pos = self.object:getpos()
-			pos.y = math.floor(pos.y)+0.5
-			self.object:setpos(pos)
+			if math.abs(self.object:getvelocity().y) < 1 then
+				local pos = self.object:getpos()
+				pos.y = math.floor(pos.y)+0.5
+				self.object:setpos(pos)
+				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), 0))
+			else
+				self.object:setvelocity(get_velocity(self.v, self.object:getyaw(), self.object:getvelocity().y))
+			end
 		end
 	end
 end
