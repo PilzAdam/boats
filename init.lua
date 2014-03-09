@@ -1,7 +1,14 @@
-
 --
 -- Helper functions
 --
+-- Boilerplate to support localized strings if intllib mod is installed.
+local S
+if (minetest.get_modpath("intllib")) then
+  dofile(minetest.get_modpath("intllib").."/intllib.lua")
+  S = intllib.Getter(minetest.get_current_modname())
+else
+  S = function ( s ) return s end
+end
 
 local function is_water(pos)
 	local nn = minetest.env:get_node(pos).name
@@ -139,7 +146,7 @@ minetest.register_entity("boats:boat", boat)
 
 
 minetest.register_craftitem("boats:boat", {
-	description = "Boat",
+	description = S("Boat"),
 	inventory_image = "boat_inventory.png",
 	wield_image = "boat_wield.png",
 	wield_scale = {x=2, y=2, z=1},
