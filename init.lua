@@ -17,8 +17,8 @@ local function get_sign(i)
 end
 
 local function get_velocity(v, yaw, y)
-	local x = math.cos(yaw)*v
-	local z = math.sin(yaw)*v
+	local x = -math.sin(yaw)*v
+	local z = math.cos(yaw)*v
 	return {x=x, y=y, z=z}
 end
 
@@ -27,7 +27,7 @@ local function get_v(v)
 end
 
 --
--- Cart entity
+-- Boat entity
 --
 
 local boat = {
@@ -51,7 +51,7 @@ function boat:on_rightclick(clicker)
 	elseif not self.driver then
 		self.driver = clicker
 		clicker:set_attach(self.object, "", {x=0,y=5,z=0}, {x=0,y=0,z=0})
-		self.object:setyaw(clicker:get_look_yaw())
+		self.object:setyaw(clicker:get_look_yaw()-math.pi/2)
 	end
 end
 
@@ -84,10 +84,18 @@ function boat:on_step(dtime)
 			self.v = self.v-0.08
 		end
 		if ctrl.left then
-			self.object:setyaw(self.object:getyaw()+math.pi/120+dtime*math.pi/120)
+			if ctrl.down then 
+				self.object:setyaw(self.object:getyaw()-math.pi/120-dtime*math.pi/120)
+			else
+				self.object:setyaw(self.object:getyaw()+math.pi/120+dtime*math.pi/120)
+			end
 		end
 		if ctrl.right then
-			self.object:setyaw(self.object:getyaw()-math.pi/120-dtime*math.pi/120)
+			if ctrl.down then 
+				self.object:setyaw(self.object:getyaw()+math.pi/120+dtime*math.pi/120)
+			else
+				self.object:setyaw(self.object:getyaw()-math.pi/120-dtime*math.pi/120)
+			end
 		end
 	end
 	local s = get_sign(self.v)
